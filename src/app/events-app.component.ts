@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   //  <h1>Ram Ram</h1>
   //  <img src="/assets/images/basic-shield.png"/>
   //`
-  template: '<events-list></events-list>'
+  template: `
+    <nav-bar></nav-bar>
+    <events-list></events-list>
+  `
 })
 export class EventsAppComponent {
   title = 'ng-fundamentals';
