@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
-import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { Error404Component } from './errors/404.component';
 import {
   CreateEventComponent,
@@ -20,9 +19,16 @@ import {
 } from "./events/index";
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
+import {
+  CollapsibleWellComponent,
+  TOASTR_TOKEN,
+  JQ_TOKEN,
+  Toastr,
+  SimpleModalComponent
+} from "./common/index";
 
-let toastr:Toastr = window['toastr'];
+let toastr: Toastr = window['toastr'];
+let jQuery = window['$'];
 
 @NgModule({
   declarations: [
@@ -36,7 +42,8 @@ let toastr:Toastr = window['toastr'];
     SessionListComponent,
     Error404Component,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
@@ -51,16 +58,20 @@ let toastr:Toastr = window['toastr'];
       useValue: toastr
     },
     EventRouteActivator,
-    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState},
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     EventListResolver,
-    AuthService
+    AuthService,
+    {
+      provide: JQ_TOKEN,
+      useValue: jQuery
+    }
   ],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
 
 export function checkDirtyState(component: CreateEventComponent) {
-  if(component.isDirty){
+  if (component.isDirty) {
     return window.confirm('You have ot saved this event, do you really want to continue?');
   }
   return true;
