@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { EventService } from '../shared/event.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 import { IEvent, ISession } from '../shared';
 
 @Component({
@@ -22,10 +22,19 @@ export class EventDetailsComponent implements OnInit {
     filterBy: string = 'all';
     sortBy: string = 'name';
 
-    constructor(private eventService: EventService, private route: ActivatedRoute){}
+    constructor(private eventService: EventService, private route: ActivatedRoute) { }
 
-    ngOnInit(){
-        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+    ngOnInit() {
+        // this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+        this.route.params.forEach((params: Params) => {
+            this.resetComponentState(params);
+        })
+    }
+    resetComponentState(params) {
+        this.event = this.eventService.getEvent(+params['id']);
+        this.addMode = false;
+        this.filterBy = 'all';
+        this.sortBy = 'name';
     }
 
     addSession() {

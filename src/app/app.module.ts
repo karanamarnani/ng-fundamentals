@@ -24,7 +24,8 @@ import {
   TOASTR_TOKEN,
   JQ_TOKEN,
   Toastr,
-  SimpleModalComponent
+  SimpleModalComponent,
+  ModalTriggerDirective
 } from "./common/index";
 
 let toastr: Toastr = window['toastr'];
@@ -43,7 +44,8 @@ let jQuery = window['$'];
     Error404Component,
     CollapsibleWellComponent,
     DurationPipe,
-    SimpleModalComponent
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,

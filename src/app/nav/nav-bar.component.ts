@@ -22,7 +22,6 @@ export class NavBarComponent {
             .subscribe(
                 sessions => {
                     this.foundSessions = sessions;
-                    console.log(this.foundSessions);
                 }
             );
     }
