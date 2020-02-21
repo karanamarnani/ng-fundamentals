@@ -15,7 +15,9 @@ import {
   EventsListComponent,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent,
+  VoterService
 } from "./events/index";
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,7 +47,8 @@ let jQuery = window['$'];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ let jQuery = window['$'];
     {
       provide: JQ_TOKEN,
       useValue: jQuery
-    }
+    },
+    VoterService
   ],
   bootstrap: [EventsAppComponent]
 })
@@ -74,7 +78,7 @@ export class AppModule { }
 
 export function checkDirtyState(component: CreateEventComponent) {
   if (component.isDirty) {
-    return window.confirm('You have ot saved this event, do you really want to continue?');
+    return window.confirm('You have not saved this event, do you really want to continue?');
   }
   return true;
 }
