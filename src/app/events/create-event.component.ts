@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import { EventService } from './shared';
+import { EventService, IEvent } from './shared';
 
 @Component({
     templateUrl: './create-event.component.html',
@@ -17,7 +17,7 @@ import { EventService } from './shared';
 export class CreateEventComponent implements OnInit {
 
     isDirty:boolean = true;
-    newEvent
+    newEvent: IEvent;
 
     constructor(private router: Router, private eventService: EventService){}
     handleCancel(){
@@ -31,18 +31,18 @@ export class CreateEventComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.newEvent = {
-            name: 'Ng Spectacular',
-            date: '8/8/2028',
-            time: '10am',
-            price: 799.99,
-            location: {
-                address: '456, Happy Street',
-                city: 'Felicity',
-                country: 'Angularistan'
-            },
-            onlineUrl: 'http://ngSpectacular.com',
-            imageUrl: 'http:ngSpectacular.com/logo.png'
-        }
+        // this.newEvent = {
+        //     name: 'Ng Spectacular',
+        //     date: '8/8/2028',
+        //     time: '10am',
+        //     price: 799.99,
+        //     location: {
+        //         address: '456, Happy Street',
+        //         city: 'Felicity',
+        //         country: 'Angularistan'
+        //     },
+        //     onlineUrl: 'http://ngSpectacular.com',
+        //     imageUrl: 'http:ngSpectacular.com/logo.png'
+        // }
     }
 }
